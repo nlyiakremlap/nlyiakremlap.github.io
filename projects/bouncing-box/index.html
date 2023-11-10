@@ -6,19 +6,26 @@
 	<script src="jquery.min.js"></script>
 	<style>
 		.box {
-			width: 70px;
-			height: 70px;
+			width: 80px;
+			height: 80px;
 			background-color: teal;
+			background-image: url(https://www.modernokids.com/cdn/shop/files/pink-mustang-front-right-wheel-turn-min_5f391f94-9744-400d-b7b3-bded2c7411c3_1000x.jpg?v=1689360422);
+			background-size: 80px;
+			background-repeat: none;
 			font-size: 300%;
 			text-align: center;
 			user-select: none;
 			display: block;
 			position: absolute;
 			top: 100px;
-			left: 0px;  /* <--- Change me! */
+			left: 300px;  /* <--- Change me! */
 		}
 		.board{
 			height: 100vh;
+			background-image: url(https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,q_75,w_1200/v1/crm/daytonabeach/DAYTONA-500-Flyover-2017---USAF-Thunderbirdss_sm-e4d8c493dac4c7d_e4d8c5e5-bdd9-12e4-ce8cbd772c93512c.jpg);
+			background-size: 1380px;
+			background-repeat: no-repeat;
+			
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -40,6 +47,7 @@
 			var box = jQuery('.box');	// reference to the HTML .box element
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
+			var boardHeight = jQuery(window).height();
 
 			// Every 50 milliseconds, call the update Function (see below)
 			setInterval(update, 50);
@@ -48,8 +56,9 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
+				box.css("top", newPositionY);
 			}
 
 			// changes the text displayed on the Box
@@ -62,8 +71,12 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
+			var positionX = 20;
+            var points = 0;
+			var speed = 10;
+			var positionY = 20;
+			var speedY = 10;
 			
-
 			
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
@@ -71,7 +84,24 @@
 			turn it around! 
 			*/
 			function update() {
+				positionX = positionX + speed;
+				positionY = positionY + speedY;
+				moveBoxTo(positionX, positionY)
+
+				if (positionX > boardWidth) {
+					speed = -speed;
+				}
+				if (positionX < 0) {
+					speed = -speed;
+				}
 				
+				if (positionY > boardHeight) {
+					speedY = -speedY;
+				}
+				if (positionY < 0) {
+					speedY = -speedY;
+				}
+
 
 			};
 
@@ -82,7 +112,10 @@
 			*/
 			function handleBoxClick() {
 				
-
+		        positionX = 0;
+				points = points + 1;
+				speed = speed + 5;
+				changeBoxText(points);
 
 			};
 		})();
