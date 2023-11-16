@@ -49,9 +49,10 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
+            
             for (var i = 0; i < circles.length; i++) {
                 physikz.updatePosition(circles[i]);
-                game.checkCirclePosition(circles[i])
+                game.checkCirclePosition(circles[i]);
             }
 
 
@@ -80,17 +81,17 @@ var init = function (window) {
          
 
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-              if (circle.x < 0) {
-                circle.x = canvas.width;
-            }
+            //   if (circle.x < 0) {
+            //     circle.x = canvas.width;
+            // }
 
-            if (circle.y > canvas.height) {
-                circle.y = 0;
-            }
-            if (circle.y < 0) {
-                circle.y = canvas.height;
+            // if (circle.y > canvas.height) {
+            //     circle.y = 0;
+            // }
+            // if (circle.y < 0) {
+            //     circle.y = canvas.height;
 
-            }
+            // }
 
                 // TODO 7 : YOUR CODE STARTS HERE //////////////////////
 
